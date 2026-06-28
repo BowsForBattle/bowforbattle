@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Bows for Battle.">
+  <title>Bows for Battle | Contact</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="internal-page home-page">
+  <header class="site-header">
+    <div class="container topbar">
+      <a class="brand" href="index.html" aria-label="Bows for Battle Home">
+        <img src="Pictures/Logo.png" alt="Bows for Battle logo">
+        <span>Bows for Battle</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="mission.html">Mission</a>
+        <a href="programs.html">Programs</a>
+        <a href="support.html">Support</a>
+        <a class="active" href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="internal-main">
+    <section class="page-intro">
+      <div class="container narrow content">
+        <p class="eyebrow">Contact</p>
+        <h1>Get in touch with Bows for Battle.</h1>
+        <p>
+          Reach out for veteran participation, volunteer opportunities, partnerships, or support questions.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container content-grid content">
+        <article class="highlight">
+          <h2>Contact Form</h2>
+          <form aria-label="Contact form">
+            <div class="field">
+              <label for="full-name">Full Name</label>
+              <input id="full-name" name="full-name" type="text" required>
+            </div>
+            <div class="field">
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="contact-email" type="email" required>
+            </div>
+            <div class="field">
+              <label for="topic">Topic</label>
+              <select id="topic" name="topic" required>
+                <option value="">Select one</option>
+                <option>Veteran Program Participation</option>
+                <option>Volunteer Interest</option>
+                <option>Partnership</option>
+                <option>Support Question</option>
+                <option>General Inquiry</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+          </form>
+        </article>
+        
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>Bows for Battle</p>
+      <p><a href="https://www.bowsforbattle.org/" target="_blank" rel="noopener noreferrer">www.bowsforbattle.org</a></p>
+    </div>
+  </footer>
+</body>
+</html>
