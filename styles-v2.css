@@ -502,6 +502,20 @@
   background: var(--khaki);
 }
 
+.board-bio-short {
+  display: none;
+}
+
+@media (max-width: 719px) {
+  .board-bio-full {
+    display: none;
+  }
+
+  .board-bio-short {
+    display: block;
+  }
+}
+
 @media (min-width: 720px) {
   .person-grid {
     grid-template-columns: repeat(3, 1fr);

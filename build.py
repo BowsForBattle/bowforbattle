@@ -51,7 +51,6 @@ NAV = [
 SECTIONS = {
     "about.html": [
         ("mission.html",      "Mission &amp; Vision"),
-        ("story.html",        "Our Story"),
     ("board.html",        "Board &amp; Leadership"),
     ],
     "programs.html": [
@@ -209,7 +208,6 @@ FOOTER = """  <footer class="site-footer">
             <h2>The Organization</h2>
             <ul class="utility-links">
               <li><a href="mission.html">Mission &amp; Vision</a></li>
-              <li><a href="story.html">Our Story</a></li>
               <li><a href="board.html">Board &amp; Leadership</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -254,7 +252,6 @@ def hub_cards(page):
     kids = SECTIONS.get(page, [])
     blurbs = {
         'mission.html':      'What we are here to do, and the principles the program is built on.',
-        'story.html':        'Why this organization exists, and exactly where it stands today.',
         'board.html':        'The people accountable for how this organization spends money.',
         'eligibility.html':  'Who we serve, what we are not, and how to sign up.',
         'equip.html':        'Bows, arrows, targets and range time.',
@@ -388,7 +385,7 @@ page('index.html', 'Home',
             possible.
           </p>
           <div class="home-actions">
-            <a class="link-button alt" href="story.html">Read Our Story</a>
+            <a class="link-button alt" href="about.html">About Bows for Battle</a>
           </div>
         </article>
         <aside class="home-panel">
@@ -630,19 +627,37 @@ page('board.html', 'Board &amp; Leadership',
       <div class="container content">
         <div class="person-grid">
           <article class="person">
-            <img class="portrait" src="Pictures/Logo.png" alt="">
+            <img class="portrait" src="Pictures/Logo.png" alt="Bows for Battle placeholder portrait for Jesse Hall">
             <h2>Jesse Hall</h2>
             <p class="role">President</p>
-            <p>
-              Bio details coming soon.
+            <p class="board-bio-full">
+              Jesse Hall is the founder and serves as President of Bows for Battle, helping lead the
+              mission to support veterans through archery, outdoor connection, and community. He is
+              focused on building a program that is veteran-first, practical, and accountable. Jesse
+              works closely with partners, volunteers, and supporters to create steady opportunities
+              where veterans can reconnect, rebuild confidence, and find purpose in a strong
+              community.
+            </p>
+            <p class="board-bio-short">
+              Jesse Hall is the founder and President of Bows for Battle, leading a veteran-first
+              mission focused on archery, outdoor connection, and community.
             </p>
           </article>
           <article class="person">
-            <img class="portrait" src="Pictures/Logo.png" alt="">
+            <img class="portrait" src="Pictures/Dustin%20Profile%20Pic.jpg" alt="Dustin Langsdorf">
             <h2>Dustin Langsdorf</h2>
             <p class="role">Vice President</p>
-            <p>
-              Bio details coming soon.
+            <p class="board-bio-full">
+              Dustin Langsdorf serves as Vice President of Bows for Battle and supports operations,
+              program development, and community partnerships. In his day job, he is an engineer at
+              Vortex Optics, bringing a hands-on, problem-solving approach to the organization's work.
+              Dustin is committed to helping veterans access safe, welcoming archery opportunities and
+              to turning community support into meaningful, lasting impact.
+            </p>
+            <p class="board-bio-short">
+              Dustin Langsdorf is Vice President of Bows for Battle and an engineer at Vortex Optics.
+              He helps lead operations and partnerships to expand safe, accessible archery
+              opportunities for veterans.
             </p>
           </article>
         </div>
