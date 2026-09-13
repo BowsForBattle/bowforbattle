@@ -26,7 +26,7 @@ import os
 OUT = os.path.dirname(os.path.abspath(__file__))
 
 # Bump on every deploy so cached HTML, CSS and JS refresh together.
-REV = "2026.08.29.4"
+REV = "2026.09.12.1"
 
 SITE = "Bows for Battle"
 
@@ -255,7 +255,7 @@ def hub_cards(page):
       'story.html':        "Read the founder's full story and why Bows for Battle was created.",
         'mission.html':      'What we are here to do, and the principles the program is built on.',
         'board.html':        'The people accountable for how this organization spends money.',
-        'eligibility.html':  'Who we serve, what we are not, and how to sign up.',
+        'eligibility.html':  'Who we serve and how to sign up.',
         'equip.html':        'Bows, arrows, targets and range time.',
         'host.html':         'Land, range access, hunting property, or a guided day.',
         'volunteer.html':    'Help at events, mentor, or simply show up.',
@@ -1004,45 +1004,33 @@ page('_what-happens.html', 'What Happens',
 
 
 page('eligibility.html', 'Eligibility &amp; Apply',
-     'Who Bows for Battle serves, what the program is not, and how a veteran signs up.',
+     'Who Bows for Battle serves and how a veteran signs up.',
      phead('Programs', 'Eligibility &amp; How to Apply',
            'We would rather be specific and have you know immediately whether this is for you, than '
            'be vague and waste your time.')
      + """    <section class="anchor-section">
       <div class="container content">
-        <div class="split-2">
-          <article class="highlight">
-            <h2>Who Is Eligible</h2>
-            <dl class="def-list">
-              <dt>Service</dt>
-              <dd class="example">Any veteran of any branch, any era. Combat service is not required.</dd>
-              <dt>Discharge status</dt>
-              <dd class="example">Any discharge status other than dishonorable.</dd>
-              <dt>Geography</dt>
-              <dd class="example">Southern Wisconsin. We are a single-location organization and cannot yet support travel.</dd>
-              <dt>Experience</dt>
-              <dd class="example">None required. No prior archery experience is needed.</dd>
-              <dt>Physical requirements</dt>
-              <dd class="example">None. Adaptive equipment and seated shooting positions are available. Tell us what you need.</dd>
-              <dt>Cost</dt>
-              <dd class="example">Free.</dd>
-            </dl>
-          </article>
+        <article class="highlight">
+          <h2>Who Is Eligible</h2>
+          <dl class="def-list">
+            <dt>Service</dt>
+            <dd>Any veteran of any branch, any era. Combat service is not required.</dd>
+            <dt>Discharge status</dt>
+            <dd>Any discharge status other than dishonorable.</dd>
+            <dt>Geography</dt>
+            <dd>Wisconsin. We are a single-location organization and cannot yet support travel.</dd>
+            <dt>Experience</dt>
+            <dd>None required. No prior archery experience is needed.</dd>
+            <dt>Physical requirements</dt>
+            <dd>None. Adaptive equipment and seated shooting positions are available. Tell us what you need.</dd>
+            <dt>Cost</dt>
+            <dd>Free.</dd>
+          </dl>
+        </article>
 
-          <aside class="highlight">
-            <h2>What We Are Not</h2>
-            <p class="example">
-              Bows for Battle is not a clinical or therapeutic program. Our coaches are archery
-              instructors and peers, not counselors. We are a place to build a skill alongside people
-              who understand military culture &mdash; and we will happily point you toward clinical
-              resources if that is what you need.
-            </p>
-            <p class="status-note" style="margin-top:0.8rem">
-              <strong>Important.</strong> Being honest about what the program is <em>not</em> protects
-              both the veteran and the organization. Have the board and your insurer review this
-              language.
-            </p>
-          </aside>
+        <div class="share-vet-cta" style="margin-top:1.2rem">
+          <p style="margin-bottom:0.6rem">Know a veteran who could use this? Send them straight to the sign-up page.</p>
+          <button class="link-button" type="button" data-share-vet data-share-url="eligibility.html">Share with a Vet</button>
         </div>
       </div>
     </section>
@@ -1051,10 +1039,9 @@ page('eligibility.html', 'Eligibility &amp; Apply',
       <div class="container content">
         <h2>How to Sign Up</h2>
         <ol class="list">
-          <li class="example">Fill out the interest form below, or call us.</li>
-          <li class="example">We call you back within a week to answer questions and confirm a date.</li>
-          <li class="example">Complete a liability waiver and a short medical and equipment questionnaire before your first session.</li>
-          <li class="example">Show up. We handle the rest.</li>
+          <li>Fill out the interest form below, or call us.</li>
+          <li>We call you back within a week to answer questions and confirm a date.</li>
+          <li>Complete a liability waiver and a short medical and equipment questionnaire before your first session.</li>
         </ol>
 
         <article class="highlight" style="margin-top:1rem">
@@ -1094,7 +1081,7 @@ page('eligibility.html', 'Eligibility &amp; Apply',
         </div>
       </div>
     </section>
-""")
+""", scripts=('share.js',))
 
 
 # ===========================================================================
