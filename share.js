@@ -11,10 +11,12 @@
   var SHARE_TITLE = 'Bows for Battle - Veteran Sign-Up';
   var SHARE_TEXT = 'Bows for Battle supports veterans through archery. Any veteran, any era, free. Here is how to sign up:';
 
+  // Always share the live site, never a local file:// path the recipient can't open.
+  var SITE_ORIGIN = 'https://bowsforbattle.org';
+
   function targetUrl(el) {
-    // Resolve relative to the current page so it works on any host/domain.
     var href = el.getAttribute('data-share-url') || 'eligibility.html';
-    return new URL(href, window.location.href).href;
+    return SITE_ORIGIN + '/' + href.replace(/^\/+/, '');
   }
 
   function flash(el, message) {
@@ -45,7 +47,11 @@
     var url = targetUrl(el);
     if (navigator.share) {
       navigator.share({ title: SHARE_TITLE, text: SHARE_TEXT, url: url })
-        .catch(function () { /* user dismissed the share sheet; do nothing */ });
+        .catch(function (err) {
+          // User dismissing the sheet is not an error; anything else -> copy the link.
+          if (err && err.name === 'AbortError') { return; }
+          copyFallback(el, url);
+        });
       return;
     }
     copyFallback(el, url);

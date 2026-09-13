@@ -15,7 +15,8 @@
 
   var TO = CFG.recipients || [
     'jessehall@bowsforbattle.org',
-    'dustinlangsdorf@bowsforbattle.org'
+    'dustinlangsdorf@bowsforbattle.org',
+    'jasonturner@bowsforbattle.org'
   ];
 
   var ENDPOINT = CFG.endpoint || '/api/form-submit';

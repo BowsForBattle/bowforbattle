@@ -553,6 +553,32 @@
   color: #f3f0e7;
 }
 
+/* Eligibility criteria: make the label read as an amber kicker and separate
+   each pair with a hairline so headers stop blending into their values. */
+.internal-main .criteria-list dt {
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--accent-bright);
+  margin-top: 0.95rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.internal-main .criteria-list dt:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.internal-main .criteria-list dd {
+  margin: 0.3rem 0 0;
+  font-size: 1.06rem;
+  line-height: 1.5;
+  color: #f6f3ea;
+}
+
 /* New panel components adopt the same translucent card treatment as
    .highlight and .card so they read as one system. */
 .internal-main .lane,

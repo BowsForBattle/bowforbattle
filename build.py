@@ -26,7 +26,7 @@ import os
 OUT = os.path.dirname(os.path.abspath(__file__))
 
 # Bump on every deploy so cached HTML, CSS and JS refresh together.
-REV = "2026.09.12.1"
+REV = "2026.09.12.2"
 
 SITE = "Bows for Battle"
 
@@ -1012,7 +1012,7 @@ page('eligibility.html', 'Eligibility &amp; Apply',
       <div class="container content">
         <article class="highlight">
           <h2>Who Is Eligible</h2>
-          <dl class="def-list">
+          <dl class="def-list criteria-list">
             <dt>Service</dt>
             <dd>Any veteran of any branch, any era. Combat service is not required.</dd>
             <dt>Discharge status</dt>
@@ -1037,12 +1037,9 @@ page('eligibility.html', 'Eligibility &amp; Apply',
 
     <section class="anchor-section muted-section">
       <div class="container content">
-        <h2>How to Sign Up</h2>
-        <ol class="list">
-          <li>Fill out the interest form below, or call us.</li>
-          <li>We call you back within a week to answer questions and confirm a date.</li>
-          <li>Complete a liability waiver and a short medical and equipment questionnaire before your first session.</li>
-        </ol>
+        <h2>Sign Up</h2>
+        <p>Fill out the short form below and we will get back to you within a week to answer any
+        questions and help set up your first session.</p>
 
         <article class="highlight" style="margin-top:1rem">
           <h3>Veteran Interest Form</h3>
