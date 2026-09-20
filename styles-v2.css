@@ -502,6 +502,11 @@
   background: var(--khaki);
 }
 
+/* Bias the square crop toward the top so a subject's head is not clipped. */
+.person .portrait.portrait-top {
+  object-position: top;
+}
+
 .board-bio-short {
   display: none;
 }

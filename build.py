@@ -26,7 +26,7 @@ import os
 OUT = os.path.dirname(os.path.abspath(__file__))
 
 # Bump on every deploy so cached HTML, CSS and JS refresh together.
-REV = "2026.09.12.2"
+REV = "2026.09.20.1"
 
 SITE = "Bows for Battle"
 
@@ -689,20 +689,36 @@ page('board.html', 'Board &amp; Leadership',
       <div class="container content">
         <div class="person-grid">
           <article class="person">
-            <img class="portrait" src="Pictures/Logo.png" alt="Bows for Battle placeholder portrait for Jesse Hall">
+            <img class="portrait portrait-top" src="Pictures/jesse%20web%20pic.jpg" alt="Jesse Hall">
             <h2>Jesse Hall</h2>
-            <p class="role">President</p>
+            <p class="role">President &amp; Founder</p>
             <p class="board-bio-full">
-              Jesse Hall is the founder and serves as President of Bows for Battle, helping lead the
-              mission to support veterans through archery, outdoor connection, and community. He is
-              focused on building a program that is veteran-first, practical, and accountable. Jesse
-              works closely with partners, volunteers, and supporters to create steady opportunities
-              where veterans can reconnect, rebuild confidence, and find purpose in a strong
-              community.
+              Jesse Hall is the President and Founder of Bows for Battle, a Wisconsin nonprofit
+              dedicated to helping veterans reconnect with the outdoors, rediscover camaraderie, and
+              find renewed purpose through archery. A U.S. Army veteran, Jesse's passion for the
+              organization grew from his own journey after military service, including the work of
+              moving through PTSD and learning firsthand how important the right support system,
+              positive outlets, and a sense of purpose can be.
+            </p>
+            <p class="board-bio-full">
+              For Jesse, archery and the outdoors became more than hobbies. They offered focus,
+              fellowship, and a place to step away from the noise for a while. After years of
+              supporting larger veteran causes, he wanted to create something more personal&mdash;an
+              organization where the impact could be seen at the individual veteran level and where
+              relationships continued long after equipment was handed over. That vision became
+              Bows for Battle: putting archery equipment into veterans' hands while creating
+              opportunities for mentorship, friendship, and meaningful time together outdoors.
+            </p>
+            <p class="board-bio-full">
+              Outside of Bows for Battle, Jesse works as a Project Manager in the life-safety
+              industry, bringing years of leadership, technical experience, and project management to
+              both his professional career and his commitment to serving fellow veterans.
             </p>
             <p class="board-bio-short">
-              Jesse Hall is the founder and President of Bows for Battle, leading a veteran-first
-              mission focused on archery, outdoor connection, and community.
+              Jesse Hall is the President and Founder of Bows for Battle and a U.S. Army veteran.
+              Drawing on his own journey after service, he built a veteran-first mission that puts
+              archery equipment in veterans' hands and creates lasting mentorship, friendship, and
+              time outdoors.
             </p>
           </article>
           <article class="person">
@@ -712,14 +728,17 @@ page('board.html', 'Board &amp; Leadership',
             <p class="board-bio-full">
               Dustin Langsdorf serves as Vice President of Bows for Battle and supports operations,
               program development, and community partnerships. In his day job, he is an engineer at
-              Vortex Optics, bringing a hands-on, problem-solving approach to the organization's work.
-              Dustin is committed to helping veterans access safe, welcoming archery opportunities and
-              to turning community support into meaningful, lasting impact.
+              Vortex Optics, bringing a problem-solving approach to the organization's work. A
+              passionate archer, Dustin finds that time outdoors with a bow is where he slows down,
+              refocuses, and draws closer to God through the quiet of nature. He enjoys shooting 3D
+              archery shoots in the summer and indoor archery leagues in the winter. He is committed
+              to helping veterans access safe, welcoming archery opportunities and to turning
+              community support into meaningful, lasting impact.
             </p>
             <p class="board-bio-short">
               Dustin Langsdorf is Vice President of Bows for Battle and an engineer at Vortex Optics.
-              He helps lead operations and partnerships to expand safe, accessible archery
-              opportunities for veterans.
+              A passionate archer who finds peace and faith in the outdoors, he helps lead operations
+              and partnerships to expand safe, accessible archery opportunities for veterans.
             </p>
           </article>
           <article class="person">
