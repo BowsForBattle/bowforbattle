@@ -9,7 +9,8 @@ const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 const DEFAULT_RECIPIENTS = [
   'jessehall@bowsforbattle.org',
   'dustinlangsdorf@bowsforbattle.org',
-  'jasonturner@bowsforbattle.org'
+  'jasonturner@bowsforbattle.org',
+  'amberhall@bowsforbattle.org'
 ];
 const ALLOWED_FORMS = new Set([
   'Veteran Interest Form',
