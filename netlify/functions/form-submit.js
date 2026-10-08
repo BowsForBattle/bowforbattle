@@ -10,7 +10,8 @@ const DEFAULT_RECIPIENTS = [
   'jessehall@bowsforbattle.org',
   'dustinlangsdorf@bowsforbattle.org',
   'jasonturner@bowsforbattle.org',
-  'amberhall@bowsforbattle.org'
+  'amberhall@bowsforbattle.org',
+  'tanya@bowsforbattle.org'
 ];
 const ALLOWED_FORMS = new Set([
   'Veteran Interest Form',

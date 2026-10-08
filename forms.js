@@ -17,7 +17,8 @@
     'jessehall@bowsforbattle.org',
     'dustinlangsdorf@bowsforbattle.org',
     'jasonturner@bowsforbattle.org',
-    'amberhall@bowsforbattle.org'
+    'amberhall@bowsforbattle.org',
+    'tanya@bowsforbattle.org'
   ];
 
   var ENDPOINT = CFG.endpoint || '/api/form-submit';
