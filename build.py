@@ -26,7 +26,7 @@ import os
 OUT = os.path.dirname(os.path.abspath(__file__))
 
 # Bump on every deploy so cached HTML, CSS and JS refresh together.
-REV = "2026.10.07.1"
+REV = "2026.10.10.1"
 
 SITE = "Bows for Battle"
 
@@ -744,7 +744,7 @@ page('board.html', 'Board &amp; Leadership',
           <article class="person">
             <img class="portrait" src="Pictures/Jason-Turner-bio.jpeg" alt="Jason Turner">
             <h2>Jason Turner</h2>
-            <p class="role">Board Member</p>
+            <p class="role">Treasurer</p>
             <p class="board-bio-full">
               Jason Turner served in the Wisconsin Army National Guard from 2004 to 2016, completing
               three combat deployments&mdash;two to Iraq and one to Afghanistan&mdash;with missions
@@ -764,11 +764,36 @@ page('board.html', 'Board &amp; Leadership',
               camaraderie, and connection through archery and the outdoors.
             </p>
           </article>
+          <article class="person">
+            <img class="portrait" src="Pictures/Tanya%20BFB%20Pio%20Pic.png" alt="Tanya Christenense">
+            <h2>Tanya Christenense</h2>
+            <p class="role">Secretary</p>
+            <p class="board-bio-full">
+              Tanya brings creativity, energy, and a heart for helping others to her role as Secretary
+              of Bows for Battle. Through her involvement at Sherwood Forest Bowmen, she discovered a
+              growing passion for archery and an opportunity to give back to veterans. With several
+              military members in her family, Bows for Battle's mission holds personal meaning for
+              Tanya, and she has proudly been part of the organization since its founding.
+            </p>
+            <p class="board-bio-full">
+              For Tanya, Bows for Battle is about much more than archery. It's about bringing people
+              together, creating a sense of belonging, and making sure our veterans know they have a
+              community standing behind them.
+            </p>
+            <p class="board-bio-full">
+              A mother of three and owner of Charisma Custom Remodeling, Tanya enjoys transforming
+              spaces, tackling new challenges, and bringing ideas to life. Whether through her
+              business, Bows for Battle, on her Harley, or just everyday life, Tanya's genuine desire
+              to help others and connect with people is at the heart of everything she does.
+            </p>
+            <p class="board-bio-short">
+              Tanya Christenense is Secretary of Bows for Battle and a passionate archer at Sherwood
+              Forest Bowmen. A mother of three and owner of Charisma Custom Remodeling, she has been
+              part of the mission since its founding&mdash;focused on bringing people together and
+              standing behind our veterans.
+            </p>
+          </article>
         </div>
-
-        <p class="status-note" style="margin-top:1.2rem">
-          Additional board bios and photos will be published as they are finalized.
-        </p>
       </div>
     </section>
 """)
