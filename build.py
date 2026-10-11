@@ -155,8 +155,7 @@ def subnav(page):
     ) % '\n'.join(links)
 
 
-FOOTER = """  <footer class="site-footer">
-    <div class="crisis-band">
+CRISIS_BAND = """    <div class="crisis-band">
       <div class="container">
         <p class="crisis-lead">In crisis? <a href="tel:988">Dial 988 then Press 1</a>.</p>
         <p class="crisis-detail">
@@ -165,8 +164,11 @@ FOOTER = """  <footer class="site-footer">
         </p>
       </div>
     </div>
+"""
 
-    <div class="legal-band">
+
+FOOTER = """  <footer class="site-footer">
+%s    <div class="legal-band">
       <div class="container legal-grid">
         <div>
           <p class="legal-name">Bows for Battle, Inc.</p>
@@ -227,7 +229,7 @@ FOOTER = """  <footer class="site-footer">
             </ul>
           </div>
         </div>
-        <div class="footer-bottom container" style="width:100%">
+        <div class="footer-bottom container" style="width:100%%">
           <p>&copy; 2026 <span>Bows for Battle, Inc.</span> All rights reserved.</p>
         </div>
       </div>
@@ -289,6 +291,8 @@ def write_all():
     main_cls = 'home-main' if name == 'index.html' else 'internal-main'
     js_files = ['forms.js'] + list(scripts)
     js = ''.join('  <script src="%s?v=%s"></script>\n' % (s, REV) for s in js_files)
+    # The crisis dial band only belongs on the home page.
+    footer = FOOTER % (CRISIS_BAND if name == 'index.html' else '')
     html = (
       head(title, desc, name, extra_css)
       + header(name)
@@ -296,7 +300,7 @@ def write_all():
       + '  <main class="%s" id="main">\n' % main_cls
       + body
       + '  </main>\n\n'
-      + FOOTER
+      + footer
       + js
       + '</body>\n</html>\n'
     )
