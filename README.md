@@ -37,7 +37,7 @@ underneath it.
 | Menu item | Hub page | Pages underneath it |
 |---|---|---|
 | Home | `index.html` | — |
-| About | `about.html` | `mission.html`, `story.html`, `board.html`, `transparency.html` |
+| About | `about.html` | `mission.html`, `story.html`, `board.html`, `team.html`, `transparency.html` |
 | Programs | `programs.html` | `what-happens.html`, `eligibility.html`, `safety.html` |
 | Events | `events.html` | — |
 | Get Involved | `get-involved.html` | `equip.html`, `host.html`, `volunteer.html` |

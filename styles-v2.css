@@ -525,6 +525,13 @@
   .person-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* A lone card on the last row sits centered at normal card width. */
+  .person-grid > .person:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 1rem) / 2);
+  }
 }
 
 /* Two-column prose layout used on several condensed sections */

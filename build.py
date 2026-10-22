@@ -26,7 +26,7 @@ import os
 OUT = os.path.dirname(os.path.abspath(__file__))
 
 # Bump on every deploy so cached HTML, CSS and JS refresh together.
-REV = "2026.10.10.1"
+REV = "2026.10.21.1"
 
 SITE = "Bows for Battle"
 
@@ -53,6 +53,7 @@ SECTIONS = {
     ("story.html",        "Our Story"),
         ("mission.html",      "Mission &amp; Vision"),
     ("board.html",        "Board &amp; Leadership"),
+        ("team.html",         "Coaches &amp; Volunteers"),
     ],
     "programs.html": [
         ("eligibility.html",  "Eligibility &amp; Apply"),
@@ -212,6 +213,7 @@ FOOTER = """  <footer class="site-footer">
             <ul class="utility-links">
               <li><a href="mission.html">Mission &amp; Vision</a></li>
               <li><a href="board.html">Board &amp; Leadership</a></li>
+              <li><a href="team.html">Coaches &amp; Volunteers</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>
@@ -239,15 +241,17 @@ FOOTER = """  <footer class="site-footer">
 
 
 def phead(eyebrow, h1, lead):
+    # An empty eyebrow drops the label bubble above the heading.
+    eyebrow_html = '        <p class="eyebrow">%s</p>\n' % eyebrow if eyebrow else ''
     return (
         '    <section class="page-intro">\n'
         '      <div class="container narrow content">\n'
-        '        <p class="eyebrow">%s</p>\n'
+        '%s'
         '        <h1>%s</h1>\n'
         '        <p>%s</p>\n'
         '      </div>\n'
         '    </section>\n\n'
-    ) % (eyebrow, h1, lead)
+    ) % (eyebrow_html, h1, lead)
 
 
 def hub_cards(page):
@@ -257,6 +261,7 @@ def hub_cards(page):
       'story.html':        "Read the founder's full story and why Bows for Battle was created.",
         'mission.html':      'What we are here to do, and the principles the program is built on.',
         'board.html':        'The people accountable for how this organization spends money.',
+        'team.html':         'The bow technicians, mentors, coaches and key volunteers who make the mission possible.',
         'eligibility.html':  'Who we serve and how to sign up.',
         'equip.html':        'Bows, arrows, targets and range time.',
         'host.html':         'Land, range access, hunting property, or a guided day.',
@@ -797,6 +802,51 @@ page('board.html', 'Board &amp; Leadership',
               standing behind our veterans.
             </p>
           </article>
+        </div>
+      </div>
+    </section>
+""")
+
+
+page('team.html', 'Coaches &amp; Volunteers',
+     'The bow technicians, mentors, coaches and key volunteers who give their time and experience to the veterans Bows for Battle serves.',
+     phead('', 'Bow Technicians, Mentors, Coaches &amp; Key Volunteers',
+           'The people who give their time, knowledge and experience so every veteran on the line is set up, supported and welcomed.')
+     + """    <section class="anchor-section">
+      <div class="container content">
+        <div class="person-grid">
+          <article class="person">
+            <img class="portrait portrait-top" src="Pictures/Keven-bio.jpg" alt="Keven Stelzel">
+            <h2>Keven Stelzel</h2>
+            <p class="role">Bow Technician, Mentor &amp; Coach</p>
+            <p class="board-bio-full">
+              Keven Stelzel is a U.S. Marine Corps veteran of the first Gulf War (1990&ndash;91), where he
+              served as a section leader of his mortar squad. After the Marine Corps he became a
+              firefighter for the City of Glendale and, following the North Shore consolidation, a
+              Heavy Equipment Operator who also served on the department's peer support team. After
+              28.5 years of service to the North Shore, Keven retired and went to work part-time at a
+              local pro shop, learning bow setup and repair and helping with beginner archery lessons.
+            </p>
+            <p class="board-bio-full">
+              An avid archer and member of Sherwood Forest Bowmen, Keven shoots leagues and has
+              competed in several national tournaments, including Vegas, Nationals, State and the
+              Rushmore Rumble. Beyond hunting Wisconsin, he has headed west for elk and mule deer.
+            </p>
+            <p class="board-bio-full">
+              &ldquo;Being asked to join Bows for Battle is an honor and a privilege&mdash;to be able
+              to give back, and to do it with a passion for what I love to do: archery.&rdquo;
+            </p>
+            <p class="board-bio-short">
+              Keven Stelzel is a Marine Corps Gulf War veteran and retired North Shore firefighter with
+              pro-shop experience in bow setup and repair. An avid tournament archer at Sherwood
+              Forest Bowmen, he serves as our resident bow technician, mentor and coach.
+            </p>
+          </article>
+        </div>
+
+        <div style="text-align:center">
+          <p style="margin-top:1.2rem">Want to coach, mentor or lend a hand?</p>
+          <p style="margin-bottom:0"><a class="link-button" href="volunteer.html">Volunteer With Us</a></p>
         </div>
       </div>
     </section>
