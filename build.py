@@ -26,7 +26,7 @@ import os
 OUT = os.path.dirname(os.path.abspath(__file__))
 
 # Bump on every deploy so cached HTML, CSS and JS refresh together.
-REV = "2026.10.21.1"
+REV = "2026.11.05.1"
 
 SITE = "Bows for Battle"
 
@@ -774,8 +774,8 @@ page('board.html', 'Board &amp; Leadership',
             </p>
           </article>
           <article class="person">
-            <img class="portrait" src="Pictures/Tanya%20BFB%20Pio%20Pic.png" alt="Tanya Christenense">
-            <h2>Tanya Christenense</h2>
+            <img class="portrait" src="Pictures/Tanya%20BFB%20Pio%20Pic.png" alt="Tanya Christensen">
+            <h2>Tanya Christensen</h2>
             <p class="role">Secretary</p>
             <p class="board-bio-full">
               Tanya brings creativity, energy, and a heart for helping others to her role as Secretary
@@ -796,7 +796,7 @@ page('board.html', 'Board &amp; Leadership',
               to help others and connect with people is at the heart of everything she does.
             </p>
             <p class="board-bio-short">
-              Tanya Christenense is Secretary of Bows for Battle and a passionate archer at Sherwood
+              Tanya Christensen is Secretary of Bows for Battle and a passionate archer at Sherwood
               Forest Bowmen. A mother of three and owner of Charisma Custom Remodeling, she has been
               part of the mission since its founding&mdash;focused on bringing people together and
               standing behind our veterans.

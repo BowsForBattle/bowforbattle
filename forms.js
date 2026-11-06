@@ -66,6 +66,27 @@
     status.style.color = ok ? '#1f6f43' : '#8e1f1f';
   }
 
+  function setStatusWithLink(form, message, url, linkText) {
+    var status = ensureStatusNode(form);
+    status.textContent = message + ' ';
+    status.style.color = '#1f6f43';
+    var link = document.createElement('a');
+    link.href = url;
+    link.textContent = linkText;
+    status.appendChild(link);
+  }
+
+  function openMailto(url) {
+    // Anchor click opens the mail handler more reliably than location.href,
+    // and leaves the page intact so the fallback link stays visible.
+    var a = document.createElement('a');
+    a.href = url;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
   function toggleSubmit(form, disabled) {
     var btn = form.querySelector('button[type="submit"]');
     if (!btn) { return; }
@@ -197,11 +218,12 @@
 
   function submitMailto(form, body) {
     try {
+      var url = mailtoUrl(body);
       markSubmitted(form);
       form.reset();
       form.setAttribute('data-started-at', String(now()));
-      setStatus(form, 'Opening your email app...', true);
-      window.location.href = mailtoUrl(body);
+      setStatusWithLink(form, 'Opening your email app. If nothing opens,', url, 'click here to send your email.');
+      openMailto(url);
     } catch (err) {
       setStatus(form, 'Could not open your email app. Please email jessehall@bowsforbattle.org directly.', false);
     } finally {
