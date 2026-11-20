@@ -10,8 +10,8 @@
   <meta property="og:description" content="Offer land, range access, hunting property or a guided day to Bows for Battle.">
   <meta property="og:image" content="Pictures/Logo.png">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="styles.css?v=2026.11.19.1">
-  <link rel="stylesheet" href="styles-v2.css?v=2026.11.19.1">
+  <link rel="stylesheet" href="styles.css?v=2026.11.19.2">
+  <link rel="stylesheet" href="styles-v2.css?v=2026.11.19.2">
 </head>
 <body class="internal-page">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -93,14 +93,19 @@
           <p class="form-inert">
             This form securely sends your details to our team.
           </p>
-          <form aria-label="Host offer form" class="email-form" data-form-title="Host Offer Form">
+          <form aria-label="Host offer form" class="email-form" data-form-title="Host Offer Form"
+                 name="host-offer" method="POST" data-netlify="true" netlify-honeypot="company_website">
+            <input type="hidden" name="form-name" value="host-offer">
+            <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+              <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+            </p>
             <div class="field">
               <label for="host-name">Name</label>
-              <input id="host-name" name="host-name" type="text" autocomplete="name">
+              <input id="host-name" name="name" type="text" autocomplete="name">
             </div>
             <div class="field">
               <label for="host-email">Email</label>
-              <input id="host-email" name="host-email" type="email" autocomplete="email">
+              <input id="host-email" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
             </div>
             <div class="field">
               <label for="host-type">What are you offering?</label>
@@ -115,11 +120,11 @@
             </div>
             <div class="field">
               <label for="host-location">General location</label>
-              <input id="host-location" name="host-location" type="text" placeholder="Example: 40 acres near Mount Horeb, WI">
+              <input id="host-location" name="location" type="text" placeholder="Example: 40 acres near Mount Horeb, WI">
             </div>
             <div class="field">
               <label for="host-detail">Tell us about it</label>
-              <textarea id="host-detail" name="host-detail" rows="4"></textarea>
+              <textarea id="host-detail" name="details" rows="4"></textarea>
             </div>
             <button type="submit">Offer a Location</button>
           </form>
@@ -201,6 +206,6 @@
       </div>
     </div>
   </footer>
-  <script src="forms.js?v=2026.11.19.1"></script>
+  <script src="forms.js?v=2026.11.19.2"></script>
 </body>
 </html>

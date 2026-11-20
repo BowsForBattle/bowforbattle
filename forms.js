@@ -1,17 +1,16 @@
 /* ============================================================
    Bows for Battle - form submission
    ------------------------------------------------------------
-   Forms marked data-submit="netlify" post to Netlify Forms,
-   which stores the submission and emails it to the board.
-   If that fails, the visitor gets a pre-filled email link.
-   Unmarked forms open the visitor's mail app (mailto).
+   Every form.email-form posts to Netlify Forms, which stores
+   the submission and emails it to the board. If the send fails,
+   the visitor gets a pre-filled email link instead.
+   Email format is checked by the browser (required + pattern
+   on each email input in build.py).
    ============================================================ */
 (function () {
   'use strict';
 
-  var CFG = window.BFB_FORM_CONFIG || {};
-
-  var TO = CFG.recipients || [
+  var TO = [
     'jessehall@bowsforbattle.org',
     'dustinlangsdorf@bowsforbattle.org',
     'jasonturner@bowsforbattle.org',
@@ -22,157 +21,55 @@
   var MIN_CLIENT_MS = 2500;
   var SUBMIT_COOLDOWN_MS = 20000;
 
-  function clean(value) {
-    return String(value === undefined || value === null ? '' : value).trim();
-  }
-
   function now() {
     return Date.now();
   }
 
-  function getFieldValue(field) {
-    if (!field) { return ''; }
-    if (field.tagName === 'SELECT') {
-      var option = field.options[field.selectedIndex];
-      return clean(option ? option.text : field.value);
-    }
-    return clean(field.value);
-  }
-
-  function getLabelText(form, field) {
-    if (!field.id) { return clean(field.name || 'Field'); }
-    var label = form.querySelector('label[for="' + field.id + '"]');
-    if (!label) { return clean(field.name || field.id || 'Field'); }
-    return clean(label.textContent.replace(/\s+/g, ' '));
-  }
-
-  function ensureStatusNode(form) {
+  function setStatus(form, message, ok, link) {
     var status = form.querySelector('.form-status');
-    if (status) { return status; }
-    status = document.createElement('p');
-    status.className = 'form-status';
-    status.setAttribute('aria-live', 'polite');
-    status.style.marginTop = '0.8rem';
-    form.appendChild(status);
-    return status;
-  }
-
-  function setStatus(form, message, ok) {
-    var status = ensureStatusNode(form);
+    if (!status) {
+      status = document.createElement('p');
+      status.className = 'form-status';
+      status.setAttribute('aria-live', 'polite');
+      status.style.marginTop = '0.8rem';
+      form.appendChild(status);
+    }
     status.textContent = message;
     status.style.color = ok ? '#1f6f43' : '#8e1f1f';
-  }
-
-  function setStatusWithLink(form, message, url, linkText, ok) {
-    var status = ensureStatusNode(form);
-    status.textContent = message + ' ';
-    status.style.color = ok === false ? '#8e1f1f' : '#1f6f43';
-    var link = document.createElement('a');
-    link.href = url;
-    link.textContent = linkText;
-    status.appendChild(link);
-  }
-
-  function openMailto(url) {
-    // Anchor click opens the mail handler more reliably than location.href,
-    // and leaves the page intact so the fallback link stays visible.
-    var a = document.createElement('a');
-    a.href = url;
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }
-
-  function toggleSubmit(form, disabled) {
-    var btn = form.querySelector('button[type="submit"]');
-    if (!btn) { return; }
-    if (!btn.hasAttribute('data-original-text')) {
-      btn.setAttribute('data-original-text', btn.textContent || 'Submit');
+    if (link) {
+      var a = document.createElement('a');
+      a.href = link.url;
+      a.textContent = link.text;
+      status.appendChild(document.createTextNode(' '));
+      status.appendChild(a);
     }
-    btn.disabled = disabled;
-    btn.textContent = disabled ? 'Sending...' : btn.getAttribute('data-original-text');
   }
 
-  function ensureHoneypot(form) {
-    var trap = form.querySelector('input[name="company_website"]');
-    if (trap) { return; }
-    trap = document.createElement('input');
-    trap.type = 'text';
-    trap.name = 'company_website';
-    trap.tabIndex = -1;
-    trap.autocomplete = 'off';
-    trap.setAttribute('aria-hidden', 'true');
-    trap.style.position = 'absolute';
-    trap.style.left = '-10000px';
-    trap.style.opacity = '0';
-    form.appendChild(trap);
-  }
-
-  function fieldList(form) {
-    var out = [];
-    var fields = form.querySelectorAll('input, select, textarea');
-    Array.prototype.forEach.call(fields, function (field) {
-      if (!field.name) { return; }
-      if (field.type === 'submit' || field.type === 'button' || field.type === 'hidden') { return; }
-      if (field.name === 'company_website') { return; }
-
-      var value = getFieldValue(field);
-      if (!value) { return; }
-
-      out.push({
-        name: clean(field.name),
-        label: getLabelText(form, field),
-        value: value
-      });
+  // Pre-filled email with the visitor's answers, used only if Netlify fails.
+  function mailtoUrl(form) {
+    var title = form.getAttribute('data-form-title') || 'Website Form';
+    var lines = ['New website submission', 'Form: ' + title, 'Page: ' + window.location.href, ''];
+    Array.prototype.forEach.call(form.querySelectorAll('input, select, textarea'), function (field) {
+      if (!field.name || field.type === 'hidden' || field.name === 'company_website') { return; }
+      var label = field.id && form.querySelector('label[for="' + field.id + '"]');
+      // Select options have no value attribute, so field.value is the visible text.
+      var value = field.value.trim();
+      if (value) {
+        lines.push('- ' + (label ? label.textContent.replace(/\s+/g, ' ').trim() : field.name) + ': ' + value);
+      }
     });
-    return out;
-  }
-
-  function payload(form) {
-    var started = Number(form.getAttribute('data-started-at') || now());
-    return {
-      formTitle: clean(form.getAttribute('data-form-title') || form.getAttribute('aria-label') || 'Website Form'),
-      pageUrl: window.location.href,
-      elapsedMs: Math.max(0, now() - started),
-      honeypot: clean((form.querySelector('input[name="company_website"]') || {}).value),
-      fields: fieldList(form)
-    };
-  }
-
-  function buildMailBody(data) {
-    var lines = [];
-    lines.push('New website submission');
-    lines.push('Form: ' + data.formTitle);
-    lines.push('Page: ' + data.pageUrl);
-    lines.push('');
-    lines.push('Details:');
-
-    Array.prototype.forEach.call(data.fields || [], function (field) {
-      lines.push('- ' + field.label + ': ' + field.value);
-    });
-
-    if (!data.fields || !data.fields.length) {
-      lines.push('- No fields were completed.');
-    }
-
-    return lines.join('\n');
-  }
-
-  function mailtoUrl(data) {
     return 'mailto:' + TO.join(',') +
-      '?subject=' + encodeURIComponent('Bows for Battle - ' + data.formTitle) +
-      '&body=' + encodeURIComponent(buildMailBody(data));
+      '?subject=' + encodeURIComponent('Bows for Battle - ' + title) +
+      '&body=' + encodeURIComponent(lines.join('\n'));
   }
 
   function cooldownKey(form) {
-    return 'bfb-form-last-submit:' + clean(form.getAttribute('data-form-title') || form.getAttribute('aria-label') || 'form');
+    return 'bfb-form-last-submit:' + (form.getAttribute('name') || 'form');
   }
 
   function blockedByCooldown(form) {
     try {
-      var raw = window.localStorage.getItem(cooldownKey(form));
-      var prev = raw ? Number(raw) : 0;
+      var prev = Number(window.localStorage.getItem(cooldownKey(form)) || 0);
       return prev > 0 && (now() - prev) < SUBMIT_COOLDOWN_MS;
     } catch (err) {
       return false;
@@ -187,57 +84,8 @@
     }
   }
 
-  async function submitNetlify(form, body) {
-    try {
-      // Send every named field (including form-name and the honeypot)
-      // URL-encoded, as Netlify Forms expects.
-      var response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString()
-      });
-
-      if (!response.ok) {
-        throw new Error('Request failed: ' + response.status);
-      }
-
-      markSubmitted(form);
-      form.reset();
-      form.setAttribute('data-started-at', String(now()));
-      setStatus(form, 'Message sent. Thank you.', true);
-    } catch (err) {
-      // Keep the visitor's entries and offer a pre-filled email instead.
-      setStatusWithLink(form, 'We could not send this right now.', mailtoUrl(body),
-        'Click here to send it by email instead.', false);
-    } finally {
-      toggleSubmit(form, false);
-    }
-  }
-
-  function submitMailto(form, body) {
-    try {
-      var url = mailtoUrl(body);
-      markSubmitted(form);
-      form.reset();
-      form.setAttribute('data-started-at', String(now()));
-      setStatusWithLink(form, 'Opening your email app. If nothing opens,', url, 'click here to send your email.');
-      openMailto(url);
-    } catch (err) {
-      setStatus(form, 'Could not open your email app. Please email jessehall@bowsforbattle.org directly.', false);
-    } finally {
-      toggleSubmit(form, false);
-    }
-  }
-
   async function submit(form) {
-    var body = payload(form);
-
-    if (body.honeypot) {
-      setStatus(form, 'Message sent successfully. Thank you.', true);
-      return;
-    }
-
-    if (body.elapsedMs < MIN_CLIENT_MS) {
+    if (now() - Number(form.getAttribute('data-started-at')) < MIN_CLIENT_MS) {
       setStatus(form, 'Please wait a moment and try again.', false);
       return;
     }
@@ -247,28 +95,41 @@
       return;
     }
 
-    toggleSubmit(form, true);
-    if (form.getAttribute('data-submit') === 'netlify') {
-      setStatus(form, 'Sending your message...', true);
-      await submitNetlify(form, body);
-      return;
+    var btn = form.querySelector('button[type="submit"]');
+    var btnText = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+    setStatus(form, 'Sending your message...', true);
+
+    try {
+      // Netlify Forms expects URL-encoded fields, including form-name.
+      var response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      });
+      if (!response.ok) {
+        throw new Error('Request failed: ' + response.status);
+      }
+      markSubmitted(form);
+      form.reset();
+      form.setAttribute('data-started-at', String(now()));
+      setStatus(form, 'Message sent. Thank you.', true);
+    } catch (err) {
+      // Keep the visitor's entries and offer a pre-filled email instead.
+      setStatus(form, 'We could not send this right now.', false,
+        { url: mailtoUrl(form), text: 'Click here to send it by email instead.' });
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = btnText; }
     }
-
-    setStatus(form, 'Preparing your email...', true);
-    submitMailto(form, body);
-  }
-
-  function wire(form) {
-    ensureHoneypot(form);
-    form.setAttribute('data-started-at', String(now()));
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      submit(form);
-    });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    var forms = document.querySelectorAll('form.email-form');
-    Array.prototype.forEach.call(forms, wire);
+    Array.prototype.forEach.call(document.querySelectorAll('form.email-form'), function (form) {
+      form.setAttribute('data-started-at', String(now()));
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        submit(form);
+      });
+    });
   });
 })();

@@ -10,8 +10,8 @@
   <meta property="og:description" content="Support Bows for Battle through sponsorship levels that fund events, veterans, and equipment packages.">
   <meta property="og:image" content="Pictures/Logo.png">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="styles.css?v=2026.11.19.1">
-  <link rel="stylesheet" href="styles-v2.css?v=2026.11.19.1">
+  <link rel="stylesheet" href="styles.css?v=2026.11.19.2">
+  <link rel="stylesheet" href="styles-v2.css?v=2026.11.19.2">
 </head>
 <body class="internal-page">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -115,22 +115,27 @@
             This form securely sends your details to our team.
             No payment is processed on this page.
           </p>
-          <form aria-label="Donation form" class="email-form" data-form-title="Donation Form">
+          <form aria-label="Donation form" class="email-form" data-form-title="Donation Form"
+                 name="donation" method="POST" data-netlify="true" netlify-honeypot="company_website">
+            <input type="hidden" name="form-name" value="donation">
+            <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+              <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+            </p>
             <div class="field">
               <label for="don-amount">Amount (USD)</label>
-              <input id="don-amount" name="don-amount" type="number" min="1" step="1">
+              <input id="don-amount" name="amount" type="number" min="1" step="1">
             </div>
             <div class="field">
               <label for="don-name">Full Name</label>
-              <input id="don-name" name="don-name" type="text" autocomplete="name">
+              <input id="don-name" name="name" type="text" autocomplete="name">
             </div>
             <div class="field">
               <label for="don-email">Email</label>
-              <input id="don-email" name="don-email" type="email" autocomplete="email">
+              <input id="don-email" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
             </div>
             <div class="field">
               <label for="don-note">In honor or memory of (optional)</label>
-              <input id="don-note" name="don-note" type="text">
+              <input id="don-note" name="note" type="text">
             </div>
             <button type="submit">Donate</button>
           </form>
@@ -243,6 +248,6 @@
       </div>
     </div>
   </footer>
-  <script src="forms.js?v=2026.11.19.1"></script>
+  <script src="forms.js?v=2026.11.19.2"></script>
 </body>
 </html>

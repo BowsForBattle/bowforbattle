@@ -10,8 +10,8 @@
   <meta property="og:description" content="Business sponsorship tiers for Bows for Battle and what each one funds.">
   <meta property="og:image" content="Pictures/Logo.png">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="styles.css?v=2026.11.19.1">
-  <link rel="stylesheet" href="styles-v2.css?v=2026.11.19.1">
+  <link rel="stylesheet" href="styles.css?v=2026.11.19.2">
+  <link rel="stylesheet" href="styles-v2.css?v=2026.11.19.2">
 </head>
 <body class="internal-page">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -115,22 +115,27 @@
             <p class="form-inert">
               This form securely sends your details to our team.
             </p>
-            <form aria-label="Sponsorship inquiry form" class="email-form" data-form-title="Sponsorship Inquiry Form">
+            <form aria-label="Sponsorship inquiry form" class="email-form" data-form-title="Sponsorship Inquiry Form"
+                   name="sponsorship-inquiry" method="POST" data-netlify="true" netlify-honeypot="company_website">
+              <input type="hidden" name="form-name" value="sponsorship-inquiry">
+              <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+                <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+              </p>
               <div class="field">
                 <label for="sp-company">Business Name</label>
-                <input id="sp-company" name="sp-company" type="text" autocomplete="organization">
+                <input id="sp-company" name="company" type="text" autocomplete="organization">
               </div>
               <div class="field">
                 <label for="sp-name">Contact Name</label>
-                <input id="sp-name" name="sp-name" type="text" autocomplete="name">
+                <input id="sp-name" name="name" type="text" autocomplete="name">
               </div>
               <div class="field">
                 <label for="sp-email">Email</label>
-                <input id="sp-email" name="sp-email" type="email" autocomplete="email">
+                <input id="sp-email" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
               </div>
               <div class="field">
                 <label for="sp-package">Package of Interest</label>
-                <select id="sp-package" name="sp-package">
+                <select id="sp-package" name="package">
                   <option value="">Select one</option>
                   <option>Fuel Hope ($0 - $249)</option>
                   <option>Bronze Sponsor ($250)</option>
@@ -143,7 +148,7 @@
               </div>
               <div class="field">
                 <label for="sp-message">Message (optional)</label>
-                <textarea id="sp-message" name="sp-message" rows="4"></textarea>
+                <textarea id="sp-message" name="message" rows="4"></textarea>
               </div>
               <button type="submit">Send Inquiry</button>
             </form>
@@ -236,6 +241,6 @@
       </div>
     </div>
   </footer>
-  <script src="forms.js?v=2026.11.19.1"></script>
+  <script src="forms.js?v=2026.11.19.2"></script>
 </body>
 </html>

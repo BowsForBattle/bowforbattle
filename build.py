@@ -26,7 +26,7 @@ import os
 OUT = os.path.dirname(os.path.abspath(__file__))
 
 # Bump on every deploy so cached HTML, CSS and JS refresh together.
-REV = "2026.11.19.1"
+REV = "2026.11.19.2"
 
 SITE = "Bows for Battle"
 
@@ -1144,26 +1144,31 @@ page('eligibility.html', 'Eligibility &amp; Apply',
           <p class="form-inert">
             This form securely sends your details to our team.
           </p>
-          <form aria-label="Veteran interest form" class="email-form" data-form-title="Veteran Interest Form">
+          <form aria-label="Veteran interest form" class="email-form" data-form-title="Veteran Interest Form"
+                 name="veteran-interest" method="POST" data-netlify="true" netlify-honeypot="company_website">
+            <input type="hidden" name="form-name" value="veteran-interest">
+            <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+              <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+            </p>
             <div class="field">
               <label for="vet-name">Full Name</label>
-              <input id="vet-name" name="vet-name" type="text" autocomplete="name">
+              <input id="vet-name" name="name" type="text" autocomplete="name">
             </div>
             <div class="field">
               <label for="vet-email">Email</label>
-              <input id="vet-email" name="vet-email" type="email" autocomplete="email">
+              <input id="vet-email" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
             </div>
             <div class="field">
               <label for="vet-phone">Phone</label>
-              <input id="vet-phone" name="vet-phone" type="tel" autocomplete="tel">
+              <input id="vet-phone" name="phone" type="tel" autocomplete="tel">
             </div>
             <div class="field">
               <label for="vet-branch">Branch and years of service (optional)</label>
-              <input id="vet-branch" name="vet-branch" type="text">
+              <input id="vet-branch" name="branch" type="text">
             </div>
             <div class="field">
               <label for="vet-needs">Anything we should know? (optional)</label>
-              <textarea id="vet-needs" name="vet-needs" rows="4"></textarea>
+              <textarea id="vet-needs" name="needs" rows="4"></textarea>
             </div>
             <button type="submit">Submit Interest</button>
           </form>
@@ -1278,10 +1283,15 @@ page('events.html', 'Events',
             <p class="form-inert">
               This form securely sends your details to our team.
             </p>
-            <form aria-label="Event notification signup" class="email-form" data-form-title="Event Notification Signup">
+            <form aria-label="Event notification signup" class="email-form" data-form-title="Event Notification Signup"
+                   name="event-notification" method="POST" data-netlify="true" netlify-honeypot="company_website">
+              <input type="hidden" name="form-name" value="event-notification">
+              <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+                <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+              </p>
               <div class="field">
                 <label for="ev-notify">Email</label>
-                <input id="ev-notify" name="ev-notify" type="email" autocomplete="email">
+                <input id="ev-notify" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
               </div>
               <button type="submit">Notify Me</button>
             </form>
@@ -1393,7 +1403,7 @@ page('equip.html', 'Donate Gear',
             This form securely sends your details to our team.
           </p>
           <form aria-label="Equipment donation form" class="email-form" data-form-title="Equipment Donation Form"
-                name="equipment-donation" method="POST" data-netlify="true" netlify-honeypot="company_website" data-submit="netlify">
+                name="equipment-donation" method="POST" data-netlify="true" netlify-honeypot="company_website">
             <input type="hidden" name="form-name" value="equipment-donation">
             <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
               <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
@@ -1404,7 +1414,7 @@ page('equip.html', 'Donate Gear',
             </div>
             <div class="field">
               <label for="eq-email">Email</label>
-              <input id="eq-email" name="email" type="email" autocomplete="email">
+              <input id="eq-email" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
             </div>
             <div class="field">
               <label for="eq-org">Business or shop name (if applicable)</label>
@@ -1468,14 +1478,19 @@ page('host.html', 'Become a Host',
           <p class="form-inert">
             This form securely sends your details to our team.
           </p>
-          <form aria-label="Host offer form" class="email-form" data-form-title="Host Offer Form">
+          <form aria-label="Host offer form" class="email-form" data-form-title="Host Offer Form"
+                 name="host-offer" method="POST" data-netlify="true" netlify-honeypot="company_website">
+            <input type="hidden" name="form-name" value="host-offer">
+            <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+              <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+            </p>
             <div class="field">
               <label for="host-name">Name</label>
-              <input id="host-name" name="host-name" type="text" autocomplete="name">
+              <input id="host-name" name="name" type="text" autocomplete="name">
             </div>
             <div class="field">
               <label for="host-email">Email</label>
-              <input id="host-email" name="host-email" type="email" autocomplete="email">
+              <input id="host-email" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
             </div>
             <div class="field">
               <label for="host-type">What are you offering?</label>
@@ -1490,11 +1505,11 @@ page('host.html', 'Become a Host',
             </div>
             <div class="field">
               <label for="host-location">General location</label>
-              <input id="host-location" name="host-location" type="text" placeholder="Example: 40 acres near Mount Horeb, WI">
+              <input id="host-location" name="location" type="text" placeholder="Example: 40 acres near Mount Horeb, WI">
             </div>
             <div class="field">
               <label for="host-detail">Tell us about it</label>
-              <textarea id="host-detail" name="host-detail" rows="4"></textarea>
+              <textarea id="host-detail" name="details" rows="4"></textarea>
             </div>
             <button type="submit">Offer a Location</button>
           </form>
@@ -1546,22 +1561,27 @@ page('volunteer.html', 'Volunteer',
           <p class="form-inert">
             This form securely sends your details to our team.
           </p>
-          <form aria-label="Volunteer form" class="email-form" data-form-title="Volunteer Form">
+          <form aria-label="Volunteer form" class="email-form" data-form-title="Volunteer Form"
+                 name="volunteer" method="POST" data-netlify="true" netlify-honeypot="company_website">
+            <input type="hidden" name="form-name" value="volunteer">
+            <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+              <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+            </p>
             <div class="field">
               <label for="vol-name">Name</label>
-              <input id="vol-name" name="vol-name" type="text" autocomplete="name">
+              <input id="vol-name" name="name" type="text" autocomplete="name">
             </div>
             <div class="field">
               <label for="vol-email">Email</label>
-              <input id="vol-email" name="vol-email" type="email" autocomplete="email">
+              <input id="vol-email" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
             </div>
             <div class="field">
               <label for="vol-help">How would you like to help?</label>
-              <textarea id="vol-help" name="vol-help" rows="4"></textarea>
+              <textarea id="vol-help" name="help" rows="4"></textarea>
             </div>
             <div class="field">
               <label for="vol-cert">Certifications, if any (optional)</label>
-              <input id="vol-cert" name="vol-cert" type="text" placeholder="Example: USA Archery Level 1 Instructor">
+              <input id="vol-cert" name="certifications" type="text" placeholder="Example: USA Archery Level 1 Instructor">
             </div>
             <button type="submit">Volunteer</button>
           </form>
@@ -1677,22 +1697,27 @@ page('donate.html', 'Donate',
             This form securely sends your details to our team.
             No payment is processed on this page.
           </p>
-          <form aria-label="Donation form" class="email-form" data-form-title="Donation Form">
+          <form aria-label="Donation form" class="email-form" data-form-title="Donation Form"
+                 name="donation" method="POST" data-netlify="true" netlify-honeypot="company_website">
+            <input type="hidden" name="form-name" value="donation">
+            <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+              <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+            </p>
             <div class="field">
               <label for="don-amount">Amount (USD)</label>
-              <input id="don-amount" name="don-amount" type="number" min="1" step="1">
+              <input id="don-amount" name="amount" type="number" min="1" step="1">
             </div>
             <div class="field">
               <label for="don-name">Full Name</label>
-              <input id="don-name" name="don-name" type="text" autocomplete="name">
+              <input id="don-name" name="name" type="text" autocomplete="name">
             </div>
             <div class="field">
               <label for="don-email">Email</label>
-              <input id="don-email" name="don-email" type="email" autocomplete="email">
+              <input id="don-email" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
             </div>
             <div class="field">
               <label for="don-note">In honor or memory of (optional)</label>
-              <input id="don-note" name="don-note" type="text">
+              <input id="don-note" name="note" type="text">
             </div>
             <button type="submit">Donate</button>
           </form>
@@ -1859,22 +1884,27 @@ page('sponsorship.html', 'Business Sponsorship',
             <p class="form-inert">
               This form securely sends your details to our team.
             </p>
-            <form aria-label="Sponsorship inquiry form" class="email-form" data-form-title="Sponsorship Inquiry Form">
+            <form aria-label="Sponsorship inquiry form" class="email-form" data-form-title="Sponsorship Inquiry Form"
+                   name="sponsorship-inquiry" method="POST" data-netlify="true" netlify-honeypot="company_website">
+              <input type="hidden" name="form-name" value="sponsorship-inquiry">
+              <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+                <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+              </p>
               <div class="field">
                 <label for="sp-company">Business Name</label>
-                <input id="sp-company" name="sp-company" type="text" autocomplete="organization">
+                <input id="sp-company" name="company" type="text" autocomplete="organization">
               </div>
               <div class="field">
                 <label for="sp-name">Contact Name</label>
-                <input id="sp-name" name="sp-name" type="text" autocomplete="name">
+                <input id="sp-name" name="name" type="text" autocomplete="name">
               </div>
               <div class="field">
                 <label for="sp-email">Email</label>
-                <input id="sp-email" name="sp-email" type="email" autocomplete="email">
+                <input id="sp-email" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
               </div>
               <div class="field">
                 <label for="sp-package">Package of Interest</label>
-                <select id="sp-package" name="sp-package">
+                <select id="sp-package" name="package">
                   <option value="">Select one</option>
                   <option>Fuel Hope ($0 - $249)</option>
                   <option>Bronze Sponsor ($250)</option>
@@ -1887,7 +1917,7 @@ page('sponsorship.html', 'Business Sponsorship',
               </div>
               <div class="field">
                 <label for="sp-message">Message (optional)</label>
-                <textarea id="sp-message" name="sp-message" rows="4"></textarea>
+                <textarea id="sp-message" name="message" rows="4"></textarea>
               </div>
               <button type="submit">Send Inquiry</button>
             </form>
@@ -1929,18 +1959,23 @@ page('contact.html', 'Contact',
             <p class="form-inert">
               This form securely sends your details to our team.
             </p>
-            <form aria-label="Contact form" class="email-form" data-form-title="Contact Form">
+            <form aria-label="Contact form" class="email-form" data-form-title="Contact Form"
+                   name="contact" method="POST" data-netlify="true" netlify-honeypot="company_website">
+              <input type="hidden" name="form-name" value="contact">
+              <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+                <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+              </p>
               <div class="field">
                 <label for="full-name">Full Name</label>
-                <input id="full-name" name="full-name" type="text" autocomplete="name">
+                <input id="full-name" name="name" type="text" autocomplete="name">
               </div>
               <div class="field">
                 <label for="contact-email">Email</label>
-                <input id="contact-email" name="contact-email" type="email" autocomplete="email">
+                <input id="contact-email" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
               </div>
               <div class="field">
                 <label for="contact-phone">Phone (optional)</label>
-                <input id="contact-phone" name="contact-phone" type="tel" autocomplete="tel">
+                <input id="contact-phone" name="phone" type="tel" autocomplete="tel">
               </div>
               <div class="field">
                 <label for="topic">Topic</label>

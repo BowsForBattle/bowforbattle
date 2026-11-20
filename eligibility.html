@@ -10,8 +10,8 @@
   <meta property="og:description" content="Who Bows for Battle serves and how a veteran signs up.">
   <meta property="og:image" content="Pictures/Logo.png">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="styles.css?v=2026.11.19.1">
-  <link rel="stylesheet" href="styles-v2.css?v=2026.11.19.1">
+  <link rel="stylesheet" href="styles.css?v=2026.11.19.2">
+  <link rel="stylesheet" href="styles-v2.css?v=2026.11.19.2">
 </head>
 <body class="internal-page">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -89,26 +89,31 @@
           <p class="form-inert">
             This form securely sends your details to our team.
           </p>
-          <form aria-label="Veteran interest form" class="email-form" data-form-title="Veteran Interest Form">
+          <form aria-label="Veteran interest form" class="email-form" data-form-title="Veteran Interest Form"
+                 name="veteran-interest" method="POST" data-netlify="true" netlify-honeypot="company_website">
+            <input type="hidden" name="form-name" value="veteran-interest">
+            <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+              <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+            </p>
             <div class="field">
               <label for="vet-name">Full Name</label>
-              <input id="vet-name" name="vet-name" type="text" autocomplete="name">
+              <input id="vet-name" name="name" type="text" autocomplete="name">
             </div>
             <div class="field">
               <label for="vet-email">Email</label>
-              <input id="vet-email" name="vet-email" type="email" autocomplete="email">
+              <input id="vet-email" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
             </div>
             <div class="field">
               <label for="vet-phone">Phone</label>
-              <input id="vet-phone" name="vet-phone" type="tel" autocomplete="tel">
+              <input id="vet-phone" name="phone" type="tel" autocomplete="tel">
             </div>
             <div class="field">
               <label for="vet-branch">Branch and years of service (optional)</label>
-              <input id="vet-branch" name="vet-branch" type="text">
+              <input id="vet-branch" name="branch" type="text">
             </div>
             <div class="field">
               <label for="vet-needs">Anything we should know? (optional)</label>
-              <textarea id="vet-needs" name="vet-needs" rows="4"></textarea>
+              <textarea id="vet-needs" name="needs" rows="4"></textarea>
             </div>
             <button type="submit">Submit Interest</button>
           </form>
@@ -192,7 +197,7 @@
       </div>
     </div>
   </footer>
-  <script src="forms.js?v=2026.11.19.1"></script>
-  <script src="share.js?v=2026.11.19.1"></script>
+  <script src="forms.js?v=2026.11.19.2"></script>
+  <script src="share.js?v=2026.11.19.2"></script>
 </body>
 </html>

@@ -10,9 +10,9 @@
   <meta property="og:description" content="Every Bows for Battle range day, intro session, work day and fundraiser, with hours, cost and who each one is for.">
   <meta property="og:image" content="Pictures/Logo.png">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="styles.css?v=2026.11.19.1">
-  <link rel="stylesheet" href="styles-v2.css?v=2026.11.19.1">
-  <link rel="stylesheet" href="styles-v3-events.css?v=2026.11.19.1">
+  <link rel="stylesheet" href="styles.css?v=2026.11.19.2">
+  <link rel="stylesheet" href="styles-v2.css?v=2026.11.19.2">
+  <link rel="stylesheet" href="styles-v3-events.css?v=2026.11.19.2">
 </head>
 <body class="internal-page">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -135,10 +135,15 @@
             <p class="form-inert">
               This form securely sends your details to our team.
             </p>
-            <form aria-label="Event notification signup" class="email-form" data-form-title="Event Notification Signup">
+            <form aria-label="Event notification signup" class="email-form" data-form-title="Event Notification Signup"
+                   name="event-notification" method="POST" data-netlify="true" netlify-honeypot="company_website">
+              <input type="hidden" name="form-name" value="event-notification">
+              <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+                <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+              </p>
               <div class="field">
                 <label for="ev-notify">Email</label>
-                <input id="ev-notify" name="ev-notify" type="email" autocomplete="email">
+                <input id="ev-notify" name="email" type="email" autocomplete="email" required pattern="[^@ ]+@[^@ ]+[.][^@ ]{2,}" title="Enter a valid email address, like name@example.com">
               </div>
               <button type="submit">Notify Me</button>
             </form>
@@ -236,8 +241,8 @@
       </div>
     </div>
   </footer>
-  <script src="forms.js?v=2026.11.19.1"></script>
-  <script src="data.js?v=2026.11.19.1"></script>
-  <script src="events.js?v=2026.11.19.1"></script>
+  <script src="forms.js?v=2026.11.19.2"></script>
+  <script src="data.js?v=2026.11.19.2"></script>
+  <script src="events.js?v=2026.11.19.2"></script>
 </body>
 </html>

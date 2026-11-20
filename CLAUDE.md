@@ -37,12 +37,15 @@ non-ASCII characters as invalid UTF-8. Use HTML entities instead:
   `tag: "..."` = amber "to confirm" note. Events auto-move Upcoming -> Past by date.
 - Board bios: `page('board.html', ...)` block in `build.py`, 2 bios per row.
   Coaches/volunteers go on `team.html`.
-- Forms are `<form class="email-form" data-form-title="...">`. Forms sent through
-  Netlify Forms also carry `name="..."`, `method="POST"`, `data-netlify="true"`,
-  `netlify-honeypot="company_website"`, `data-submit="netlify"`, a hidden
-  `form-name` input matching `name`, and a static `company_website` honeypot input.
-  Netlify strips `data-netlify` at deploy, so `forms.js` keys off `data-submit`.
-  Netlify only detects forms present in the built HTML.
+- Every form is a Netlify Form: `<form class="email-form" data-form-title="..."
+  name="..." method="POST" data-netlify="true" netlify-honeypot="company_website">`,
+  plus a hidden `form-name` input matching `name` and a static `company_website`
+  honeypot input. Copy an existing form when adding one. Netlify only detects forms
+  present in the built HTML, and each new form name needs its notification set in
+  the Netlify dashboard.
+- Field `name`s are plain words (`name`, `email`, `phone`, ...) because they label the
+  notification email. The email field is always `name="email"` (so replies reach the
+  visitor) with `required` and the same `pattern` as the other forms.
 - Images live in `Pictures/`. `Reference/` is source material, not served content.
 
 ## Writing tone
