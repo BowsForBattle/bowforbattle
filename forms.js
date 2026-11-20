@@ -1,17 +1,15 @@
 /* ============================================================
-   Bows for Battle - secure form submission
+   Bows for Battle - form submission
    ------------------------------------------------------------
-   Sends form data to a serverless endpoint that validates and
-   emails submissions to the org inboxes.
+   Forms marked data-submit="netlify" post to Netlify Forms,
+   which stores the submission and emails it to the board.
+   If that fails, the visitor gets a pre-filled email link.
+   Unmarked forms open the visitor's mail app (mailto).
    ============================================================ */
 (function () {
   'use strict';
 
   var CFG = window.BFB_FORM_CONFIG || {};
-  var MODE = String(CFG.mode || 'mailto').toLowerCase();
-  if (MODE !== 'mailto' && MODE !== 'api') {
-    MODE = 'mailto';
-  }
 
   var TO = CFG.recipients || [
     'jessehall@bowsforbattle.org',
@@ -21,7 +19,6 @@
     'tanya@bowsforbattle.org'
   ];
 
-  var ENDPOINT = CFG.endpoint || '/api/form-submit';
   var MIN_CLIENT_MS = 2500;
   var SUBMIT_COOLDOWN_MS = 20000;
 
@@ -66,10 +63,10 @@
     status.style.color = ok ? '#1f6f43' : '#8e1f1f';
   }
 
-  function setStatusWithLink(form, message, url, linkText) {
+  function setStatusWithLink(form, message, url, linkText, ok) {
     var status = ensureStatusNode(form);
     status.textContent = message + ' ';
-    status.style.color = '#1f6f43';
+    status.style.color = ok === false ? '#8e1f1f' : '#1f6f43';
     var link = document.createElement('a');
     link.href = url;
     link.textContent = linkText;
@@ -190,27 +187,28 @@
     }
   }
 
-  async function submitApi(form, body) {
+  async function submitNetlify(form, body) {
     try {
-      var response = await fetch(ENDPOINT, {
+      // Send every named field (including form-name and the honeypot)
+      // URL-encoded, as Netlify Forms expects.
+      var response = await fetch('/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(body)
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
       });
 
       if (!response.ok) {
-        throw new Error('Request failed');
+        throw new Error('Request failed: ' + response.status);
       }
 
       markSubmitted(form);
       form.reset();
       form.setAttribute('data-started-at', String(now()));
-      setStatus(form, 'Message sent successfully. Thank you.', true);
+      setStatus(form, 'Message sent. Thank you.', true);
     } catch (err) {
-      setStatus(form, 'Unable to send right now. Please email jessehall@bowsforbattle.org directly.', false);
+      // Keep the visitor's entries and offer a pre-filled email instead.
+      setStatusWithLink(form, 'We could not send this right now.', mailtoUrl(body),
+        'Click here to send it by email instead.', false);
     } finally {
       toggleSubmit(form, false);
     }
@@ -250,9 +248,9 @@
     }
 
     toggleSubmit(form, true);
-    if (MODE === 'api') {
+    if (form.getAttribute('data-submit') === 'netlify') {
       setStatus(form, 'Sending your message...', true);
-      await submitApi(form, body);
+      await submitNetlify(form, body);
       return;
     }
 

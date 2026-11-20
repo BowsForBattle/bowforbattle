@@ -26,7 +26,7 @@ import os
 OUT = os.path.dirname(os.path.abspath(__file__))
 
 # Bump on every deploy so cached HTML, CSS and JS refresh together.
-REV = "2026.11.05.1"
+REV = "2026.11.19.1"
 
 SITE = "Bows for Battle"
 
@@ -1392,22 +1392,27 @@ page('equip.html', 'Donate Gear',
           <p class="form-inert">
             This form securely sends your details to our team.
           </p>
-          <form aria-label="Equipment donation form" class="email-form" data-form-title="Equipment Donation Form">
+          <form aria-label="Equipment donation form" class="email-form" data-form-title="Equipment Donation Form"
+                name="equipment-donation" method="POST" data-netlify="true" netlify-honeypot="company_website" data-submit="netlify">
+            <input type="hidden" name="form-name" value="equipment-donation">
+            <p class="hp-field" aria-hidden="true" style="position:absolute;left:-10000px;opacity:0">
+              <label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label>
+            </p>
             <div class="field">
               <label for="eq-name">Name</label>
-              <input id="eq-name" name="eq-name" type="text" autocomplete="name">
+              <input id="eq-name" name="name" type="text" autocomplete="name">
             </div>
             <div class="field">
               <label for="eq-email">Email</label>
-              <input id="eq-email" name="eq-email" type="email" autocomplete="email">
+              <input id="eq-email" name="email" type="email" autocomplete="email">
             </div>
             <div class="field">
               <label for="eq-org">Business or shop name (if applicable)</label>
-              <input id="eq-org" name="eq-org" type="text" autocomplete="organization">
+              <input id="eq-org" name="business" type="text" autocomplete="organization">
             </div>
             <div class="field">
               <label for="eq-items">What are you offering?</label>
-              <textarea id="eq-items" name="eq-items" rows="4" placeholder="Example: one compound bow, 60 lb, plus a dozen arrows and a hard case."></textarea>
+              <textarea id="eq-items" name="offering" rows="4" placeholder="Example: one compound bow, 60 lb, plus a dozen arrows and a hard case."></textarea>
             </div>
             <button type="submit">Offer Equipment</button>
           </form>

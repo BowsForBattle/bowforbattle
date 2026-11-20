@@ -1,0 +1,9 @@
+# Secrets - never commit
+.resend-api
+.env
+.env.*
+
+# Local tooling
+.venv/
+.vscode/
+__pycache__/

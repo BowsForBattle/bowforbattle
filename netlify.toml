@@ -1,8 +1,2 @@
-[functions]
-  directory = "netlify/functions"
-
-[[redirects]]
-  from = "/api/form-submit"
-  to = "/.netlify/functions/form-submit"
-  status = 200
-  force = true
+# Netlify config. Build settings (python3 build.py, publish ".") live in the
+# Netlify dashboard. Forms are handled by Netlify Forms (see forms.js).
